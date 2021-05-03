@@ -4,7 +4,7 @@ Color primaryBlack = Color(0xff202c3b);
 
 class DataSource {
   static String quote =
-      "Vaccination for adults between age 18 to 45 has begun from 1st of May. Please get yourself vaccinated! It is the sureshot way to defeat this pandemic";
+      "Vaccination for adults between age 18 to 45 has begun from 1st of May. Please get yourself vaccinated! It is the sureshot way to defeat this pandemic.";
   static List questionAnswers = [
     {
       "question": "What is a coronavirus?",
