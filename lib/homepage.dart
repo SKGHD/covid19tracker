@@ -21,10 +21,20 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  List countryData;
+  fetchCountryData() async {
+    http.Response response =
+        await http.get(Uri.parse('https://disease.sh/v3/covid-19/countries'));
+    setState(() {
+      countryData = json.decode(response.body);
+    });
+  }
+
 // calling the fetchWorldWideData() method on first paint.
   @override
   void initState() {
     fetchWorldWideData();
+    fetchCountryData();
     super.initState();
   }
 
@@ -52,9 +62,27 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Text(
-                'Worldwide',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Worldwide',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: primaryBlack,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Text(
+                      'Regional',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
             ),
             worldData == null
@@ -64,7 +92,14 @@ class _HomePageState extends State<HomePage> {
                   )
                 : WorldWidePanel(
                     worldData: worldData,
-                  )
+                  ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Text(
+                'Most Affected Countries',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            ),
           ],
         ),
       ),
