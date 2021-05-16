@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:covid19tracker/datasource.dart';
+import 'package:covid19tracker/panels/mostaffectedcountries.dart';
 import 'package:covid19tracker/panels/worldwidepanel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -100,6 +101,14 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            countryData == null
+                ? Container()
+                : MostAffectedPanel(
+                    countryData: countryData,
+                  )
           ],
         ),
       ),
